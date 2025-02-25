@@ -1,0 +1,195 @@
+* {
+  font-family: "Plus Jakarta Sans", serif;
+  font-optical-sizing: auto;
+  font-weight: normal;
+  font-style: normal;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* Shape Ratios */
+  --landscape-shape-ratio: 0.5625;
+  --poster-shape-ratio: 1.464;
+
+  /* Scroll & Navigation */
+  --scroll-bar-size: 6px;
+  --horizontal-nav-bar-size: 5.5rem;
+  --vertical-nav-bar-size: 6rem;
+  --focus-outline-size: 2px;
+
+  /* Platform Colors */
+  --color-facebook: #1877f1;
+  --color-x: #000000;
+  --color-reddit: #ff4500;
+  --color-imdb: #f5c518;
+  --color-trakt: #ed2224;
+
+  /* Placeholder Colors */
+  --color-placeholder: rgba(96, 96, 96, 0.5);
+  --color-placeholder-text: #b0b0b0;
+  --color-placeholder-background: rgba(40, 40, 40, 0.8);
+
+  /* Background Colors */
+  --primary-background-color: #0a0a0a; /* Deep black */
+  --secondary-background-color: #1c1c1e; /* Dark gray */
+  --modal-background-color: #141414; /* Darker gray */
+
+  /* Foreground Colors */
+  --primary-foreground-color: #e5e5e5; /* Soft white */
+  --secondary-foreground-color: #b0b0b0; /* Muted gray */
+
+  /* Accent Colors */
+  --primary-accent-color: #d4af37; /* Gold (premium movie feel) */
+  --secondary-accent-color: #28a745; /* Vibrant red (cinema seats) */
+  --tertiary-accent-color: #ff4500; /* Bright blue (modern touch) */
+
+  /* UI Effects */
+  --overlay-color: rgba(255, 255, 255, 0.05);
+  --outer-glow: 0px 0px 15px rgba(212, 175, 55, 0.4); /* Gold glow effect */
+  --text-glow: 0px 0px 15px rgba(212, 175, 55, 0.8); /* Gold glow effect */
+  --border-radius: 0.75rem;
+
+  /* Safe Area Insets */
+  --safe-area-inset-top: env(safe-area-inset-top);
+  --safe-area-inset-right: env(safe-area-inset-right);
+  --safe-area-inset-bottom: env(safe-area-inset-bottom);
+  --safe-area-inset-left: env(safe-area-inset-left);
+
+  /* Component Sizes */
+  --card-width: 164px;
+}
+
+
+::-webkit-scrollbar {
+  width: var(--scroll-bar-size);
+  height: var(--scroll-bar-size);
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: var(--scroll-bar-size);
+  background-color: var(--overlay-color);
+}
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.button-hover{
+  transition: all .1s ease-in;
+
+}
+.button-hover:hover {
+  outline: var(--focus-outline-size) solid var(--primary-foreground-color);
+  background-color: transparent !important;
+  cursor: pointer;
+  /* transition: background-color 0.1s ease-out; */
+    box-shadow: var(--outer-glow);
+
+  transition: all .5s ease-in;
+}
+
+.button-hover-2:hover {
+  background-color: hsla(0, 0%, 100%, 0.3) !important;
+  cursor: pointer;
+  transition: background-color 0.1s ease-out;
+  box-shadow: var(--outer-glow);
+
+  transition: all .1s ease-in;
+}
+
+.dropbtn {
+  background-color: var(--overlay-color);
+  color: white;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dropdown-content {
+  display: block;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 100%;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  transform: scaleY(0%);
+  opacity: 0;
+  font-size: 0;
+  transition: all .1s ease-in-out;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  transform: scaleX(0%);
+  transition: all .1s linear;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+.dropdown:hover .dropdown-content a {
+  /* color: black; */
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  transform: scaleX(100%);
+  transition: all .2s linear;
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+  font-size: inherit;
+  transform: scaleY(100%) translateY(0%);
+  opacity: 1;
+  transition: all .1s linear;
+
+}
+
+.dropdown:hover .dropbtn .icon {
+  rotate: 180deg;
+  transition: all .1s ease-in-out;
+
+}
+
+.dropbtn .icon {
+  /* rotate: 180deg; */
+  transition: all .1s ease-in-out;
+
+}
+
+.dropdown:hover .dropbtn {
+  /* background-color: #3e8e41; */
+}
+
+.round-button {
+  flex: none;
+  height: 4rem;
+  /* margin-bottom: 1rem; */
+  width: 4rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  border-radius: 100%;
+  background-color: var(--overlay-color);
+  backdrop-filter: blur(5px);
+  transition: background-color 0.1s ease-out;
+  transition: all .1s ease-in;
+  svg {
+    display: block;
+    height: 1.75rem;
+    width: 1.75rem;
+    color: var(--primary-foreground-color);
+    opacity: 0.9;
+  }
+}

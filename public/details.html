@@ -1,0 +1,253 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Details</title>
+    <link rel="stylesheet" href="css/navigation.css">
+    <link rel="stylesheet" href="css/details.css">
+    <link rel="stylesheet" href="css/default.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.1.1/gsap.min.js"></script>
+    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/Physics2DPlugin3.min.js"></script>
+</head>
+
+<body>
+    <div id="download-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-title">
+                <h2>Select Download</h2>
+                <span class="close-modal"><i class="bi bi-x"></i></span>
+            </div>
+            <div id="download-list">
+            </div>
+        </div>
+
+    </div>
+    <div id="modify-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <h2>Download Started</h2>
+            <span class="close-modal"><i class="bi bi-x"></i></span>
+            <div class="modal-body">
+                <a id="save-changes" class="button-container">
+                    <div class="icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M6.75 19.25H17.25C18.3546 19.25 19.25 18.3546 19.25 17.25V9.82843C19.25 9.29799 19.0393 8.78929 18.6642 8.41421L15.5858 5.33579C15.2107 4.96071 14.702 4.75 14.1716 4.75H6.75C5.64543 4.75 4.75 5.64543 4.75 6.75V17.25C4.75 18.3546 5.64543 19.25 6.75 19.25Z"
+                                stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            </path>
+                            <path
+                                d="M8.75 19V15.75C8.75 15.1977 9.19772 14.75 9.75 14.75H14.25C14.8023 14.75 15.25 15.1977 15.25 15.75V19"
+                                stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            </path>
+                            <path d="M8.75 5V8.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round"></path>
+                        </svg>
+                    </div>
+                    <div class="label">Go to downloads</div>
+                </a>
+                <div id="tmdb-results"></div>
+            </div>
+        </div>
+    </div>
+    <div class="verbar">
+        <div class="verbar-item" id="backButton" style=":hover{}">
+            <svg viewBox="0 0 512 512" class="backicn">
+                <path d="M328 112l-144 144 144 144" style="
+                stroke: currentcolor;
+                stroke-linecap: round;
+                stroke-linejoin: round;
+                stroke-width: 48;
+                fill: none;
+                "></path>
+            </svg>
+        </div>
+        <div class="sizer"></div>
+    </div>
+    <div class="content-wrapper">
+        <div class="content">
+            <div class="info-content">
+                <div class="logo">
+                    <img id="logo" alt="" src="">
+                </div>
+                <div class="info">
+                    <div class="label" id="runtime-label">- min</div>
+                    <div class="label" id="year-label">-</div>
+                    <div class="imdb-label">
+                        <div id="rating-label">-</div>
+                        <svg class="icon-MBu8k" viewBox="0 0 512 512">
+                            <path
+                                d="M294.5 217.5c-1.3-0.7-3.8-1-7.4-1v77.9c4.8 0 7.8-0.9 8.9-2.7s1.7-6.6 1.7-14.5v-46c0-5.4-0.2-8.8-0.6-10.3a5.37 5.37 0 0 0-2.6-3.4"
+                                style="fill: currentcolor"></path>
+                            <path
+                                d="M384 255.6v28.1c0 5.3-0.3 8.7-0.8 10-0.5 1.4-3.2 2.1-5 2.1s-4.3-0.8-4.9-2.1v-47.6c0.5-1.2 3.2-2 4.9-2s4.2 0.9 4.8 2.3c0.7 1.5 1 4.6 1 9.2"
+                                style="fill: currentcolor"></path>
+                            <path
+                                d="M45 176.4A26.375 26.375 0 0 1 71.39999999999998 150h369.2a26.38 26.38 0 0 1 18.68 7.722 26.5 26.5 0 0 1 5.72 8.57c1.32 3.205 2 6.64 2 10.108v158.2c0 3.468-0.68 6.903-2 10.108a26.5 26.5 0 0 1-5.72 8.569 26.5 26.5 0 0 1-8.57 5.722A26.4 26.4 0 0 1 440.5999999999999 361H71.39999999999998a26.375 26.375 0 0 1-26.4-26.4z m52.8 138.4h33V196.2h-33z m95.9-63.2l7.4-55.4h41.7v118.7h-27.9l-0.1-80.1-11.2 80.1h-19.9L172 236.5l-0.1 78.4h-28V196.2h41.4c1.2 7.2 2.5 15.6 3.8 25.3z m62.3 63.2V196.2h51.5a21.064 21.064 0 0 1 21.1 20.9v76.8a20.934 20.934 0 0 1-21.1 20.9z m136.8-88.9h-2.1a22.05 22.05 0 0 0-17.4 8.4v-38.1h-31.6v117.2h29.6l1.9-7.3a21.7 21.7 0 0 0 7.7 6.486 21.7 21.7 0 0 0 9.8 2.314h2.1c11.8 0 21.4-9.3 21.4-20.7v-47.6c0-11.5-9.5-20.7-21.4-20.7"
+                                style="
+                    fill: currentcolor;
+                    fill-rule: evenodd;
+                    clip-rule: evenodd;
+                    "></path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <div class="label">GENRES</div>
+                    <div class="card-container" id="genres-container">
+                        <div class="card button-hover-2">
+                            <div class="loading-card"></div>
+                        </div>
+                        <div class="card button-hover-2">
+                            <div class="loading-card"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <div class="label">CAST</div>
+                    <div class="card-container" id="cast-container">
+                        <div class="card button-hover-2">
+                            <div class="loading-card"></div>
+                        </div>
+                        <div class="card button-hover-2">
+                            <div class="loading-card"></div>
+                        </div>
+                        <div class="card button-hover-2">
+                            <div class="loading-card"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="summary">
+                    <div class="label">SUMMARY</div>
+                    <script>
+                        document.addEventListener("DOMContentLoaded", function () {
+                            function getRandomArbitrary(min, max) {
+                                return Math.random() * (max - min) + min;
+                            }
+
+                            const summaryElement = document.getElementById('summary');
+                            if (summaryElement) {
+                                const summaryChildren = summaryElement.children;
+
+                                for (const loading of summaryChildren) {
+                                    loading.style.width = `${getRandomArbitrary(40, 90)}%`;
+                                }
+                            } else {
+                                console.error("Element with id 'summary' not found.");
+                            }
+                        });
+                    </script>
+                    <div id="summary">
+                        <div class="loading-text"></div>
+                        <div class="loading-text"></div>
+                        <div class="loading-text"></div>
+                        <div class="loading-text"></div>
+                        <div class="loading-text"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="actions">
+                <div class="button button-hover" id="watch-btn">
+                    <div class="download-animation">
+                        <div class="text">Download Started</div>
+                    </div>
+                    <div class="icon">
+                        <div class="arrow"></div>
+                        <svg class="line" viewBox="0 0 24 24"></svg>
+                    </div>
+                    <div class="label-container">
+                        <div class="label">
+                            Download
+                        </div>
+                    </div>
+                </div>
+                <div class="button button-hover">
+                    <svg class="icon-DG4TM" viewBox="0 0 512 512">
+                        <path
+                            d="M434.4 215.4000000000001l-270.2 2.1c36.8-14.4 74.6-28.9 112.8-43.5 48.7-18.7 97.401-37.3 143.201-55.4a15.34 15.34 0 0 0 8.091-8.42 15.33 15.33 0 0 0-0.192-11.68l-1.899-4.5A541 541 0 0 0 396 26.59999999999991a14.75 14.75 0 0 0-7.795-5.46 14.68 14.68 0 0 0-9.504 0.46c-7.2 2.8-64.401 25-129.901 50.2-75.2 29.1-161.2 62.2-194.5 75.2a14.75 14.75 0 0 0-8.037 7.63 14.75 14.75 0 0 0-0.463 11.07c5.3 14.7 8.7 24.1 11.2 30.6a48.86 48.86 0 0 0-14.2 23.9l-0.8 3.7-0.3 1.4a18.4 18.4 0 0 0-0.3 3.2v7.6c0.088 1.45 0.323 2.89 0.7 4.3a50.06 50.06 0 0 0 34.9 39.2c0.2 37.9 0.7 155.2 0.7 177.9 0.005 3.9 1.555 7.63 4.311 10.39a14.76 14.76 0 0 0 10.39 4.31c52.299 0 344.399 1.3 344.399 1.3 3.865 0 7.577-1.52 10.329-4.23a14.7 14.7 0 0 0 4.371-10.27c0-1.7 2.3-168.2 2.3-224.7-0.2-16.7-15.5-18.9-19.4-18.9m-155.8 68.8l23.9-38.5 53.6-0.4-24.1 38.9z m-10.8-38.2l-23.7 38.2h-52.9l23.4-37.9z m-36.5-86c-16.6 6.4-32.9 12.7-49.2 19l6-52.3 49.2-19z m35.2-13.6l-4.4 1.7 6-52.4 50.5-19.4-6.1 52.5z m129.1-49.8c-17 6.7-34.5 13.4-52 20.2l6.101-52.5 27.599-10.6c5.3 11.8 13.2 30.5 18.3 42.9m-312.1 86.6l-5.2-14.1c19.4-7.6 47.4-18.4 78.8-30.5l-6 52.4c-6.4 2.5-12.9 5-19.2 7.5a45.6 45.6 0 0 0-16.213-12.17A45.5 45.5 0 0 0 95.8 182.4000000000001c-0.8 0-1.9 0.2-2.8 0.2-2.642-0.03-5.283 0.13-7.9 0.5-0.535-0.01-1.07 0.02-1.6 0.1M70.6 234.4000000000001l0.6-7c1.494-5.09 4.801-9.46 9.297-12.28a21.72 21.72 0 0 1 15.103-3.02c5.217 0.69 9.978 3.33 13.319 7.4a20.75 20.75 0 0 1 4.681 14.5 19.9 19.9 0 0 1-5.9 12.1 21.949 21.949 0 0 1-14.6 6.6 20.75 20.75 0 0 1-22.2-17.3c-0.06-0.34-0.16-0.68-0.3-1m35.6 46c1-0.3 1.8-0.9 2.8-1.3a47.5 47.5 0 0 0 10.2-4.8l0.2-0.1a52.1 52.1 0 0 0 10.8-9.1c0.3-0.3 0.6-0.5 0.8-0.7s0.7-1 1.1-1.4c0.8-1 1.5-2 2.2-3a46 46 0 0 0 7.2-13l38.4-0.3-23.3 37.6h-50.4z m316.001 163.7c-54.8-0.2-248.701-1.1-315.201-1.2-0.1-29.5-0.3-88-0.5-129.3h317.4c-0.6 49.6-1.299 104.9-1.699 130.5M424 284.2000000000003h-57.6l24.2-39.2 33.5-0.3c0.1 11.1-0.1 24.7-0.1 39.5"
+                            style="fill: currentcolor;"></path>
+                    </svg>
+                    <div class="label-container">
+                        <div class="label">
+                            Trailer
+                        </div>
+                    </div>
+                </div>
+                <div class="round-button button-hover" id="addToLib">
+                    <svg class="icon-DG4TM" viewBox="0 0 512 512">
+                        <path
+                            d="M140.5999999999999 72.5h213c9.1-0.3 16.2-7.3 16-15.8-0.3-8.1-7.3-14.6-16-14.9h-213c-9.1 0.3-16.2 7.3-16 15.8 0.3 8.1 7.3 14.6 16 14.9"
+                            style="fill: currentcolor;"></path>
+                        <path
+                            d="M116.79999999999995 118.59999999999991h255.1c8.9 0 16.1-6.9 16.1-15.3 0-8.5-7.2-15.3-16.1-15.3H116.79999999999995c-8.9 0-16.1 6.9-16.1 15.3 0.1 8.4 7.3 15.3 16.1 15.3"
+                            style="fill: currentcolor;"></path>
+                        <path
+                            d="M391.29999999999995 311.5999999999999h-40.799v-40.7c0-3.66-1.454-7.17-4.042-9.76a13.8 13.8 0 0 0-9.758-4.04c-3.66 0-7.17 1.45-9.758 4.04a13.8 13.8 0 0 0-4.042 9.76v40.7h-40.7c-3.66 0-7.17 1.45-9.758 4.04a13.81 13.81 0 0 0 0 19.52 13.8 13.8 0 0 0 9.758 4.04h40.7v40.7c0 3.66 1.454 7.17 4.042 9.76a13.8 13.8 0 0 0 9.758 4.04c3.66 0 7.17-1.45 9.758-4.04a13.8 13.8 0 0 0 4.042-9.76v-40.7h40.799a13.8 13.8 0 0 0 13.8-13.8 13.8 13.8 0 0 0-13.8-13.8"
+                            style="fill: currentcolor;"></path>
+                        <path
+                            d="M424.0999999999999 210.5999999999999v-30a47.6 47.6 0 0 0-13.93-33.57 47.6 47.6 0 0 0-33.57-13.93H98.49999999999989a47.528 47.528 0 0 0-47.5 47.5v179a47.557 47.557 0 0 0 47.5 47.5h119a144.4 144.4 0 0 0 45.184 42.53 144.3 144.3 0 0 0 58.863 19.65 144.4 144.4 0 0 0 61.673-6.86 144.3 144.3 0 0 0 53.1-32.11 144.3 144.3 0 0 0 34.73-51.43 144.3 144.3 0 0 0 9.95-61.25c-1.17-20.9-6.86-41.29-16.68-59.77a144.5 144.5 0 0 0-40.22-47.26m-325.6 165.8a16.93 16.93 0 0 1-11.94-4.96 16.94 16.94 0 0 1-4.96-11.94v-179a16.94 16.94 0 0 1 4.96-11.94 16.93 16.93 0 0 1 11.94-4.96h278.1a16.93 16.93 0 0 1 16.9 16.9v12a144.25 144.25 0 0 0-82.717-9.45 144.29 144.29 0 0 0-115.109 110.31 144.3 144.3 0 0 0 5.926 83.04z m238.3 66a116.8 116.8 0 0 1-46.637-9.74 116.8 116.8 0 0 1-38.863-27.56l-4.5-5.5a122.5 122.5 0 0 1-13.5-20.7l-1.3-2.5h-0.5a117.002 117.002 0 0 1 27.188-138.12 117.006 117.006 0 0 1 187.392 45.29 117.03 117.03 0 0 1 3.18 74.15 117.02 117.02 0 0 1-112.46 84.68"
+                            style="fill: currentcolor;"></path>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <div class="content support-content" id="download-list-wrapper">
+            <div class="dropdown" id="drop-down">
+                <button class="dropbtn">
+                    <div class="label" id="current-season">Season 1</div>
+                    <svg class="icon" viewBox="0 0 512 512">
+                        <path
+                            d="M91.79999999999927 213.79899999999998l145.3 169.6c2.1 2.536 4.7 4.592 7.7 6.031 2.9 1.487 6.1 2.382 9.4 2.633 3.2 0.251 6.5-0.147 9.6-1.171 3.1-1.035 6-2.662 8.5-4.793 1-0.797 1.9-1.703 2.7-2.7l145.3-169.6c3.1-3.647 5-8.083 5.7-12.8 0.7-4.719 0-9.539-2-13.869-2-4.344-5.2-8.023-9.2-10.599s-8.7-3.942-13.5-3.932h-290.7c-3.3-0.01-6.6 0.626-9.6 1.873-4.6 1.86-8.5 5.058-11.2 9.175-2.7 4.109-4.2 8.924-4.2 13.852 0.1 5.99 2.3 11.756 6.2 16.3"
+                            style="fill: currentcolor;"></path>
+                    </svg>
+                </button>
+                <div class="dropdown-content" id="dropdown-content">
+                    <a href="#">TorrentGalaxy</a>
+                    <a href="#">Link 2</a>
+                    <a href="#">Link 3</a>
+                </div>
+            </div>
+            <div class="source-list" id="source-list">
+                <!-- Episodes go  -->
+                <div class="episode">
+                    <img src="https://image.tmdb.org/t/p/w227_and_h127_bestv2/zVobco2BeS830uaUYOhtMnod9WX.jpg" alt="The Journey's End">
+                    <div class="episode-title-container">
+                      <div class="title">
+                        <div class="label">The Journey's End</div>
+                      </div>
+                      <div class="info">
+                        <div class="label">2023-09-29 • 26m</div>
+                      </div>
+                    </div>
+                    <div class="icon-container">
+                        <svg class="icon downEpisode" showname="Frieren: Beyond Journey's End" data-season="1" data-episode="1" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                          <path stroke="currentColor" d="M9.5 12L12 14.5L14.5 12M12 4.5V13.8912" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                          <path stroke="currentColor" d="M20 16.5L19.7785 17.8288C19.6178 18.7932 18.7834 19.5 17.8057 19.5H6.19425C5.21658 19.5 4.3822 18.7932 4.22147 17.8288L4 16.5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                        <div class="svg-download-animation">
+                            <div class="text">Download</div>
+                        </div>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+    <div class="background-wrapper">
+        <img id="background" alt="" src="">
+    </div>
+    <script src="js/details.js"></script>
+    <div id="info" style="display: none;">
+        <div id="tmdb-id"></div>
+        <div id="movie-path">/home/yfz/Videos/Legend.mp4</div>
+        <div id="movie-name">Legend</div>
+        <div id="movie-id">69</div>
+        <div id="season">S01</div>
+    </div>
+
+
+
+
+</body>
+
+</html>

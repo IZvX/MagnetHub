@@ -1,0 +1,22 @@
+{
+  "name": "movie-downloader",
+  "version": "1.0.0",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2",
+    "nyaapi": "^2.4.4",
+    "socket.io": "^4.8.1",
+    "torrent-search-api": "^2.1.4",
+    "webtorrent": "^2.5.19",
+    "xml2js": "^0.6.2",
+    "xmldom": "^0.6.0"
+  },
+  "description": ""
+}

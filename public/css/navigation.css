@@ -1,0 +1,219 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - var(--vertical-nav-bar-size));
+  align-items: center;
+  width: var(--vertical-nav-bar-size);
+  padding-top: var(--horizontal-nav-bar-size);
+}
+
+.sidebar-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: calc(var(--vertical-nav-bar-size) - 1.2rem);
+  height: calc(var(--vertical-nav-bar-size) - 1.2rem);
+  color: var(--primary-foreground-color);
+  border-radius: 0.75rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.sidebar-item svg {
+  width: 2.2rem;
+  height: 2.2rem;
+  opacity: 0.2;
+}
+
+.sidebar-item span {
+  flex: none;
+  position: relative;
+  max-width: 100%;
+  max-height: 2.4em;
+  padding: 0 0.5rem;
+  font-size: 0rem;
+  font-weight: 500;
+  letter-spacing: 0.01rem;
+  text-align: center;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: var(--primary-foreground-color);
+  opacity: 0;
+  overflow: hidden;
+  transform: translateY(-50%);
+  transition: all 0.2s ease-in-out;
+}
+
+.sidebar-item:hover {
+  background-color: var(--overlay-color);
+}
+
+.sidebar-item:hover span {
+  flex: none;
+  position: relative;
+  max-width: 100%;
+  max-height: 2.4em;
+  padding: 0 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.01rem;
+  text-align: center;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: var(--primary-foreground-color);
+  opacity: 0.6;
+  overflow: hidden;
+  transform: translateY(0%);
+
+}
+
+.sidebar-item.active {
+  color: transparent;
+  opacity: 1;
+}
+
+.sidebar-item.active svg {
+  opacity: 1;
+  color: var(--primary-accent-color);
+}
+
+.verbar {
+  position: fixed;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  z-index: 50;
+  pointer-events: all;
+}
+
+.verbar .logo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: var(--horizontal-nav-bar-size);
+  width: var(--vertical-nav-bar-size);
+}
+
+.verbar .logo svg {
+  width: 35px;
+  height: 35px;
+}
+
+.verbar-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  color: var(--primary-foreground-color);
+  border-radius: 0.75rem;
+  cursor: pointer;
+  margin-right: 1rem;
+}
+
+.verbar-item svg {
+  width: 2.2rem;
+  height: 2.2rem;
+  opacity: 0.2;
+  transition: all .5s ease-in-out;
+}
+
+.verbar-item:hover {
+  background-color: var(--overlay-color);
+}
+
+.verbar-item:hover .settingsicon {
+  width: 2.2rem;
+  height: 2.2rem;
+  opacity: 0.2;
+  rotate: 180deg;
+}
+
+.verbar-item:hover span {
+  flex: none;
+  position: relative;
+  max-width: 100%;
+  max-height: 2.4em;
+  padding: 0 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.01rem;
+  text-align: center;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: var(--primary-foreground-color);
+  opacity: 0.6;
+  overflow: hidden;
+}
+
+.search-bar {
+  --search-bar-size: 3.25rem;
+  display: flex;
+  flex-direction: row;
+  height: var(--search-bar-size);
+  border-radius: var(--search-bar-size);
+  background-color: var(--overlay-color);
+  position: relative;
+  overflow: visible;
+}
+
+.search-cont {
+  height: 3.25rem;
+  width: 30rem;
+}
+
+.search-input {
+  background: none;
+  border: none;
+  outline: none;
+  flex: 1;
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 0.5rem 0 2rem;
+  font-weight: 500;
+  color: var(--primary-foreground-color);
+  cursor: text;
+}
+
+.search-bar .search-input .placeholder-label {
+  max-height: 1.2em;
+  opacity: 1;
+  color: var(--primary-foreground-color);
+  opacity: 0.6;
+}
+
+.search-bar .submit-button {
+  --search-bar-size: 3.25rem;
+  flex: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: var(--search-bar-size);
+  padding: 0 1.5rem;
+  outline-width: var(--focus-outline-size);
+  outline-color: hsl(0, 0%, 100%);
+  outline-offset: calc(-1 * var(--focus-outline-size));
+  cursor: pointer;
+}
+
+.search-bar .submit-button svg {
+  flex: none;
+  width: 1.7rem;
+  height: 1.7rem;
+  color: var(--primary-foreground-color);
+  opacity: 0.6;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}

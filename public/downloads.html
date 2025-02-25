@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Downloads</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/default.css" />
+    <link rel="stylesheet" href="css/navigation.css" />
+    <link rel="stylesheet" href="css/downloads.css" />
+    <link rel="stylesheet" href="css/details.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Style adjustments go here */
+        /* Progress Bar - Moving animation */
+        .button {
+            width: 32px;
+            height: 32px;
+
+            i {
+                pointer-events: none;
+            }
+        }
+
+        .loading-animation {
+            /* border-radius: 5px; */
+            width: 50% !important;
+            /* Initial width (adjust for desired speed) */
+            position: relative;
+            /* Allows movement within container */
+            left: -50%;
+            /* Start off-screen to the left */
+            animation: marchingAnts 3s ease-in-out infinite;
+
+            background-color: var(--primary-accent-color);
+            filter: grayscale(1);
+            /* Animation */
+        }
+
+        @keyframes marchingAnts {
+            0% {
+                left: -50%;
+                /* Start off-screen left */
+            }
+
+            50% {
+                width: 100%;
+            }
+
+            100% {
+                left: 100%;
+                /* Move off-screen right */
+            }
+        }
+    </style>
+
+
+
+    <link rel="stylesheet" data-purpose="Layout StyleSheet" title="Web Awesome"
+        href="/css/app-wa-025281ccfe06a9d63cd35694641e07d3.css?vsn=d">
+
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/all.css">
+
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/sharp-duotone-thin.css">
+
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/sharp-duotone-solid.css">
+
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/sharp-duotone-regular.css">
+
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/sharp-duotone-light.css">
+
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/sharp-thin.css">
+
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/sharp-solid.css">
+
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/sharp-regular.css">
+
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/sharp-light.css">
+
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/duotone-thin.css">
+
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/duotone-regular.css">
+
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/duotone-light.css">
+
+</head>
+
+<body class="dark-theme">
+    <component id="sidebar"></component>
+    <div id="main" class="wrapper">
+        <div class="downloads">
+            <div style="display: none;">
+                <input type="text" id="torrentId" placeholder="Enter Torrent ID">
+                <button id="downloadButton">Add Torrent</button>
+                <div id="status"></div>
+            </div>
+            <h2 style="color: white; margin-bottom: 15px;">Downloads</h2>
+            <!-- <div id="torrentList"></div> -->
+            <div class="download-list" id="torrentList">
+                <!-- Download cards go here -->
+            </div>
+
+        </div>
+    </div>
+
+
+    <script src="js/script.js"></script>
+    <script src="js/downloads.js"></script>
+</body>
+
+</html>

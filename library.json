@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1740372895403,
+    "movieId": "82739",
+    "type": "tv",
+    "addedAt": "2025-02-24T04:54:55.403Z",
+    "title": "Rascal Does Not Dream of Bunny Girl Senpai"
+  },
+  {
+    "id": 1740372822403,
+    "movieId": "1423587",
+    "type": "movie",
+    "addedAt": "2025-02-24T04:55:55.403Z",
+    "title": "Rascal Does Not Dream of Santa Claus"
+  },
+  {
+    "id": 1740372895404,
+    "movieId": "154743",
+    "type": "tv",
+    "addedAt": "2025-02-24T04:54:55.404Z",
+    "title": "The Angel Next Door Spoils Me Rotten"
+  },
+  {
+    "id": 1740372895405,
+    "movieId": "209867",
+    "type": "tv",
+    "addedAt": "2025-02-24T04:54:55.405Z",
+    "title": "Frieren: Beyond Journey's End"
+  },
+  {
+    "id": 1740372895406,
+    "movieId": "572154",
+    "type": "movie",
+    "addedAt": "2025-02-24T04:54:55.406Z",
+    "title": "Rascal Does Not Dream of a Dreaming Girl"
+  },
+  {
+    "id": 1740372895407,
+    "movieId": "1056803",
+    "type": "movie",
+    "addedAt": "2025-02-24T04:54:55.407Z",
+    "title": "Rascal Does Not Dream of a Sister Venturing Out"
+  },
+  {
+    "id": 1740372895408,
+    "movieId": "1086591",
+    "type": "movie",
+    "addedAt": "2025-02-24T04:54:55.408Z",
+    "title": "Rascal Does Not Dream of a Knapsack Kid"
+  },
+  {
+    "id": 1415215125,
+    "movieId": "1396",
+    "type": "tv",
+    "addedAt": "2025-02-24T04:54:55.408Z",
+    "title": "Breaking Bad"
+  }
+]

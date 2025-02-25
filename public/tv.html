@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MediaPlayer</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/default.css" />
+    <link rel="stylesheet" href="css/navigation.css" />
+
+    <!-- Bootstrap CSS -->
+    <!-- Bootstrap Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+
+
+    <link
+      rel="stylesheet"
+      data-purpose="Layout StyleSheet"
+      title="Web Awesome"
+      href="/css/app-wa-025281ccfe06a9d63cd35694641e07d3.css?vsn=d"
+    >
+
+      <link
+        rel="stylesheet"
+        href="https://site-assets.fontawesome.com/releases/v6.7.2/css/all.css"
+      >
+
+      <link
+        rel="stylesheet"
+        href="https://site-assets.fontawesome.com/releases/v6.7.2/css/sharp-duotone-thin.css"
+      >
+
+      <link
+        rel="stylesheet"
+        href="https://site-assets.fontawesome.com/releases/v6.7.2/css/sharp-duotone-solid.css"
+      >
+
+      <link
+        rel="stylesheet"
+        href="https://site-assets.fontawesome.com/releases/v6.7.2/css/sharp-duotone-regular.css"
+      >
+
+      <link
+        rel="stylesheet"
+        href="https://site-assets.fontawesome.com/releases/v6.7.2/css/sharp-duotone-light.css"
+      >
+
+      <link
+        rel="stylesheet"
+        href="https://site-assets.fontawesome.com/releases/v6.7.2/css/sharp-thin.css"
+      >
+
+      <link
+        rel="stylesheet"
+        href="https://site-assets.fontawesome.com/releases/v6.7.2/css/sharp-solid.css"
+      >
+
+      <link
+        rel="stylesheet"
+        href="https://site-assets.fontawesome.com/releases/v6.7.2/css/sharp-regular.css"
+      >
+
+      <link
+        rel="stylesheet"
+        href="https://site-assets.fontawesome.com/releases/v6.7.2/css/sharp-light.css"
+      >
+
+      <link
+        rel="stylesheet"
+        href="https://site-assets.fontawesome.com/releases/v6.7.2/css/duotone-thin.css"
+      >
+
+      <link
+        rel="stylesheet"
+        href="https://site-assets.fontawesome.com/releases/v6.7.2/css/duotone-regular.css"
+      >
+
+      <link
+        rel="stylesheet"
+        href="https://site-assets.fontawesome.com/releases/v6.7.2/css/duotone-light.css"
+      >
+
+
+</head>
+
+<body class="dark-theme">
+    <div id="modify-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-modal"><i class="bi bi-x"></i></span>
+            <h2>Select Movie</h2>
+            <div class="modal-body">
+                <div class="search-bar search-cont">
+                    <div class="search-input">
+                        <input size="1" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false"
+                            tabindex="-1" class="search-input-aOiJ2 text-input-jR2Nr" type="text"
+                            placeholder="Search..." value="">
+                    </div>
+                    <div tabindex="0" class="submit-button">
+                        <svg class="icon-FT4bG" viewBox="0 0 512 512">
+                            <path
+                                d="M456.7 437.4000000000001l-94.1-94.1a173.25 173.25 0 0 0 34.8-104.6c0-96.3-78.4-174.7-174.7-174.7S48 142.4000000000001 48 238.79999999999973c0 96.3 78.4 174.7 174.7 174.7 37.71 0 74.406-12.21 104.6-34.8l94.1 94.1a24.96 24.96 0 0 0 12.646 6.09c4.711 0.78 9.546 0.19 13.933-1.69a25.05 25.05 0 0 0 10.823-8.94 25 25 0 0 0 4.298-13.36 25.94 25.94 0 0 0-6.4-17.5M97.9 238.79999999999973a124.67 124.67 0 0 1 32.268-83.74 124.674 124.674 0 0 1 166.653-16.49 124.7 124.7 0 0 1 48.049 75.8c6.054 30.36 0.6 61.88-15.299 88.43a124.73 124.73 0 0 1-70.722 55.26c-29.615 9-61.519 6.66-89.507-6.56A124.69 124.69 0 0 1 97.9 238.79999999999973"
+                                style="fill: currentcolor"></path>
+                        </svg>
+                    </div>
+                </div>
+                <a id="save-changes" class="button-container">
+                    <div class="icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M6.75 19.25H17.25C18.3546 19.25 19.25 18.3546 19.25 17.25V9.82843C19.25 9.29799 19.0393 8.78929 18.6642 8.41421L15.5858 5.33579C15.2107 4.96071 14.702 4.75 14.1716 4.75H6.75C5.64543 4.75 4.75 5.64543 4.75 6.75V17.25C4.75 18.3546 5.64543 19.25 6.75 19.25Z"
+                                stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            </path>
+                            <path
+                                d="M8.75 19V15.75C8.75 15.1977 9.19772 14.75 9.75 14.75H14.25C14.8023 14.75 15.25 15.1977 15.25 15.75V19"
+                                stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            </path>
+                            <path d="M8.75 5V8.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round"></path>
+                        </svg>
+                    </div>
+                    <div class="label">Save Changes</div>
+                </a>
+                <div id="tmdb-results"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="topwrap">
+        <component id="sidebar"></component>
+        <div class="wrapper">
+            <div class="content" id="content">
+                <!-- Insert MovieScrollList and card elements dynamically -->
+            </div>
+        </div>
+
+        
+        
+        <script src="js/script.js"></script>
+        <script src="js/index.js"></script>
+</body>
+
+</html>

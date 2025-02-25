@@ -1,0 +1,87 @@
+        /*  Styles specific to the downloads page  */
+        .downloads {
+            padding: 20px;
+        }
+
+        .download-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .torrent-item {
+            background-color: rgba(0, 0, 0, 0.5);
+            /* Dark background for cards */
+            color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .progress-bar.complete {
+            background-color: var(--secondary-accent-color);
+            /* Green for completed downloads */
+        }
+
+        .download-progress-container {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .progress-bar-container {
+            background-color: #222;
+            border-radius: 5px;
+            height: 10px;
+            max-width: fit-content;
+            min-width: calc(90% - 32px);
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            background-color: var(--primary-accent-color);
+            /* Blue progress bar */
+            height: 100%;
+            width: 0%;
+            /* Dynamically set with JavaScript */
+            border-radius: 5px;
+        }
+
+        .download-controls {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            max-width: fit-content;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .download-status {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            max-width: 92%;
+            min-width: 90%;
+        }
+
+        .status-icon{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            background-color: var(--overlay-color);
+            backdrop-filter: blur(5px);
+            border-radius: 100%;
+        }
