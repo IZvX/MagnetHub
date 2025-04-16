@@ -1,71 +1,73 @@
-# Keraview: Torrent Movie & TV Show Downloader
+# MagnetHub 🎬 🍿
 
-## 🌟 What is Keraview?
+A movie and TV show downloader application built with Node.js and Electron, leveraging both web scraping and torrent technologies. MagnetHub aims to provide a seamless experience for finding and downloading your favorite content.
 
-Keraview is a sleek, web-based application built with **Node.js** that allows you to effortlessly download movies and TV shows via magnet links. With its clean UI and powerful backend, you can search and download content from multiple sources—all in one place.
+It uses multiple sources to find the best torrent magnets from the web!
 
-## 🔧 How Does It Work?
+**Key Features:**
 
-Keraview works by leveraging several APIs and technologies to search, find, and download content:
+*   🔍 Search for movies and TV shows.
+*   🧲 Fetches torrent magnets from various sources.
+*   🌐 Integrates with web scraping techniques.
+*   ⬇️ Supports torrent downloading.
+*   ⚡️ Fast and efficient.
+*   🖥️ Cross-platform compatibility (Windows, macOS, Linux).
 
-- **TMDB API**: For fetching movie and TV show details (e.g., titles, images, descriptions).
-- **Torrent-Search-API**: A powerful NPM package that integrates with several torrent providers, including:
-  - ThePirateBay
-  - YTS
-  - 1337X
-  - NyaSii
-  - And many more...
-- **WebTorrent**: Handles the actual downloading of the content via magnet links.
+**Sources:**
 
-## 🛠️ How to Install
+MagnetHub aggregates torrent magnets from several popular sources, including:
 
-Getting Keraview up and running is simple! Follow these steps:
+*   🏴‍☠️ ThePirateBay
+*   🎞️ YTS
+*   🔢 1337X
+*   🐱 NyaSii
+*   ➕ And many more!
 
-1. **Download the source code**  
-   - Extract it to a location of your choice.
+## How to Compile & Run 🛠️
 
-2. **Install Node.js**  
-   - If you don't have Node.js, download it [here](https://nodejs.org/en).
+Follow these instructions to compile and run MagnetHub on your local machine:
 
-3. **Verify Node.js Installation**  
-   - Open your terminal/command prompt and run:
-     ```bash
-     node --version
-     ```
-   - You should see something like:
-     ```bash
-     v22.14.0
-     ```
+**Prerequisites:**
 
-4. **Install Dependencies**  
-   - Navigate to the project directory:
-     ```bash
-     cd /path/to/Keraview
-     ```
-   - Run the following command to install the required dependencies:
-     ```bash
-     npm install
-     ```
+*   [Node.js](https://nodejs.org/) (v16 or higher recommended)
+*   [npm](https://www.npmjs.com/) (Node Package Manager, usually included with Node.js)
+*   [Git](https://git-scm.com/) (Optional, but recommended for cloning the repository)
 
-5. **Start the Server**  
-   - Run the app using:
-     ```bash
-     node .
-     ```
+**Steps:**
 
-6. **Access the Web App**  
-   - If everything is working correctly, you should see:
-     ```bash
-     Server listening on port 3000
-     ```
-   - Open your browser and go to [localhost:3000](http://localhost:3000).
+1.  **Clone the Repository (if you have Git):**
 
-7. **Enjoy!**  
-   - Start searching and downloading your favorite movies and TV shows!
+    ```bash
+    git clone <YOUR_GITHUB_REPOSITORY_LINK>  # Replace with your repository link
+    cd MagnetHub
+    ```
 
----
+    *If you don't have Git, download the source code as a ZIP file and extract it.*
 
-## 🔗 Sources
+2.  **Install Dependencies:**
 
-- [Torrent-Search-API on NPM](https://www.npmjs.com/package/torrent-search-api)
-- [WebTorrent Official Site](http://webtorrent.io/)
+    ```bash
+    npm install
+    ```
+    This command installs all the necessary packages defined in the `package.json` file.
+
+3.  **Run the Application:**
+
+    ```bash
+    npm start
+    ```
+
+    This command starts the Electron application.
+
+**Alternatively to build the application, use those command after the dependancies install:**
+
+1.  **Build the Application**
+
+    ```bash
+    npm run build
+    ```
+    This command creates an executable depending on your OS, in the dist folder.
+
+## Project Structure 📂
+
+A brief overview of the project structure (example):
