@@ -1,0 +1,29 @@
+{
+  "webTorrent": {
+    "maxConns": 55,
+    "tracker": true,
+    "dht": true,
+    "lsd": true,
+    "webSeeds": true,
+    "utp": true,
+    "downloadLimit": -1,
+    "uploadLimit": -1
+  },
+  "app": {
+    "showAdultContent": true,
+    "enabledProviders": {
+      "1337x": false,
+      "Eztv": false,
+      "KickassTorrents": true,
+      "Limetorrents": true,
+      "Rarbg": true,
+      "ThePirateBay": true,
+      "Torrent9": false,
+      "TorrentProject": true,
+      "Torrentz2": true,
+      "Yts": true,
+      "NyaaSi": true
+    },
+    "downloadPath": "D:\\Movies"
+  }
+}

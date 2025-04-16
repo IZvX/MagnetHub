@@ -441,7 +441,7 @@ document.addEventListener("DOMContentLoaded", function () {
     //   sourceList.appendChild(torrentDiv);
     // });
 
-    function downloadEpisode(id, type, searchTerm, container) {
+    async function downloadEpisode(id, type, searchTerm, container) {
         animatesvg('Searching torrents!', container)
         fetch("/download", {
             method: "POST",
@@ -639,18 +639,141 @@ function getUrlParam(param) {
 }
 
 
-function startDownload(magnet) {
+async function startDownload(magnet) {
     const torrentId = magnet;
 
     if (!torrentId) {
         return;
     }
 
+    document.getElementById('subtitle-modal').style.display = 'flex';
+
+    const languages = [
+        { code: "ar", name: "Arabic", countryCode: "sa" }, // Or another appropriate Arab country
+        { code: "en", name: "English", countryCode: "us" }, // or gb, ca, au, etc.
+        { code: "fr", name: "French", countryCode: "fr" },
+        { code: "de", name: "German", countryCode: "de" },
+        { code: "ja", name: "Japanese", countryCode: "jp" },
+        { code: "es", name: "Spanish", countryCode: "es" },
+    ];
+
+    const subtitleListDiv = document.getElementById("subtitle-list");
+
+    function populateLanguageList() {
+        languages.forEach((language) => {
+            const languageDiv = document.createElement("div");
+            languageDiv.className = "lang-select"
+            // languageDiv.style.display = "flex";
+            // languageDiv.style.alignItems = "center";
+            // language.style.justifyContent = ""
+            // languageDiv.style.marginBottom = "1rem";
+            // const checkbox = document.createElement("input");
+            // checkbox.type = "checkbox";
+            // checkbox.value = language.code;
+
+            const flagImg = document.createElement("img");
+            flagImg.src = `https://flagsapi.com/${language.countryCode.toUpperCase()}/flat/32.png`; // Adjust style and size as needed
+            flagImg.style.marginRight = "5px";
+
+            const textSpan = document.createElement("span");
+            textSpan.textContent = language.name;
+
+            const btn = document.createElement("div");
+            btn.className = 'icon-container';
+            btn.innerHTML = `
+                    <svg class="icon downSub" lang="${language.code}" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" d="M9.5 12L12 14.5L14.5 12M12 4.5V13.8912" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path stroke="currentColor" d="M20 16.5L19.7785 17.8288C19.6178 18.7932 18.7834 19.5 17.8057 19.5H6.19425C5.21658 19.5 4.3822 18.7932 4.22147 17.8288L4 16.5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+            `
+            // languageDiv.appendChild(checkbox);
+            languageDiv.appendChild(flagImg);
+            languageDiv.appendChild(textSpan);
+            languageDiv.appendChild(btn)
+            subtitleListDiv.appendChild(languageDiv);
+
+            btn.addEventListener('click', async (event) => {
+                let lang = event.target.getAttribute('lang');
+                console.log(lang)
+                subtitleListDiv.innerHTML = ``;
+                await fetchSubtitles(lang);
+            })
+        });
+    }
+
+    populateLanguageList();
+
     // Send ADD_TORRENT message to the server
-    ws.send(JSON.stringify({ type: 'ADD_TORRENT', torrentId: torrentId }));
-    // statusDiv.textContent = 'Adding torrent...';
-    // torrentIdInput.value = '';  // Clear the input
+    ws.send(JSON.stringify({ type: 'ADD_TORRENT', torrentId: torrentId, tmdbid: getUrlParam('id') }));
+
+    
+    // *********************************************************************************************************************************
+    // NEW: Fetch and display subtitles
+    // *********************************************************************************************************************************
+
+
+
 }
+
+document.getElementById('subtitles-btn').addEventListener('click', () => {
+    document.getElementById('subtitle-modal').style.display = 'flex';
+
+    const languages = [
+        { code: "ar", name: "Arabic", countryCode: "sa" }, // Or another appropriate Arab country
+        { code: "en", name: "English", countryCode: "us" }, // or gb, ca, au, etc.
+        { code: "fr", name: "French", countryCode: "fr" },
+        { code: "de", name: "German", countryCode: "de" },
+        { code: "ja", name: "Japanese", countryCode: "jp" },
+        { code: "es", name: "Spanish", countryCode: "es" },
+    ];
+
+    const subtitleListDiv = document.getElementById("subtitle-list");
+
+    function populateLanguageList() {
+        languages.forEach((language) => {
+            const languageDiv = document.createElement("div");
+            languageDiv.className = "lang-select"
+            // languageDiv.style.display = "flex";
+            // languageDiv.style.alignItems = "center";
+            // language.style.justifyContent = ""
+            // languageDiv.style.marginBottom = "1rem";
+            // const checkbox = document.createElement("input");
+            // checkbox.type = "checkbox";
+            // checkbox.value = language.code;
+
+            const flagImg = document.createElement("img");
+            flagImg.src = `https://flagsapi.com/${language.countryCode.toUpperCase()}/flat/32.png`; // Adjust style and size as needed
+            flagImg.style.marginRight = "5px";
+
+            const textSpan = document.createElement("span");
+            textSpan.textContent = language.name;
+
+            const btn = document.createElement("div");
+            btn.className = 'icon-container';
+            btn.innerHTML = `
+                    <svg class="icon downSub" lang="${language.code}" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" d="M9.5 12L12 14.5L14.5 12M12 4.5V13.8912" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path stroke="currentColor" d="M20 16.5L19.7785 17.8288C19.6178 18.7932 18.7834 19.5 17.8057 19.5H6.19425C5.21658 19.5 4.3822 18.7932 4.22147 17.8288L4 16.5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+            `
+            // languageDiv.appendChild(checkbox);
+            languageDiv.appendChild(flagImg);
+            languageDiv.appendChild(textSpan);
+            languageDiv.appendChild(btn)
+            subtitleListDiv.appendChild(languageDiv);
+
+            btn.addEventListener('click', async (event) => {
+                let lang = event.target.getAttribute('lang');
+                console.log(lang)
+                subtitleListDiv.innerHTML = ``;
+                await fetchSubtitles(lang);
+            })
+        });
+    }
+
+    populateLanguageList();
+
+})
 
 
 function createTorrentElement(torrent) {
@@ -773,11 +896,14 @@ function getPoint(point, i, a, smoothing) {
 
 /**
  * Generates an SVG path string for a curved line.
- * @param {number} update - The value to update the Y coordinate of the middle point.
- * @param {number} smoothing - The smoothing factor for the curve.
- * @param {array} pointsNew - Optional array of points to use. If not provided, default points are used.
- * @returns {string} - The SVG path string.
- */
+ * @param {number} update - The value to update the Y coordinate of the Y coordinate of the middle point.
+
+@param {number} smoothing - The smoothing factor for the curve.
+
+@param {array} pointsNew - Optional array of points to use. If not provided, default points are used.
+
+@returns {string} - The SVG path string.
+*/
 function getPath(update, smoothing, pointsNew) {
     const points = pointsNew
         ? pointsNew
@@ -794,16 +920,22 @@ function getPath(update, smoothing, pointsNew) {
     return `<path d="${d}" />`;
 }
 
-
 /**
- * Creates particle effects.
- * @param {HTMLElement} parent - The parent element to append the particles to.
- * @param {number} quantity - The number of particles to create.
- * @param {number} x - The initial X position of the particles.
- * @param {number} y - The initial Y position of the particles.
- * @param {number} minAngle - The minimum angle for the particle trajectory.
- * @param {number} maxAngle - The maximum angle for the particle trajectory.
- */
+ 
+Creates particle effects.
+ 
+@param {HTMLElement} parent - The parent element to append the particles to.
+ 
+@param {number} quantity - The number of particles to create.
+ 
+@param {number} x - The initial X position of the particles.
+ 
+@param {number} y - The initial Y position of the particles.
+ 
+@param {number} minAngle - The minimum angle for the particle trajectory.
+ 
+@param {number} maxAngle - The maximum angle for the particle trajectory.
+*/
 function particles(parent, quantity, x, y, minAngle, maxAngle) {
     const minScale = 0.07;
     const maxScale = 0.5;
@@ -838,9 +970,177 @@ function particles(parent, quantity, x, y, minAngle, maxAngle) {
             .to(dot, 0.4, {
                 opacity: 0
             }, 0.8);
+
+
     }
 }
 
 document.querySelector('.close-modal').addEventListener('click', () => {
     document.getElementById('download-modal').style.display = 'none';
 })
+
+document.getElementById('subtitle-modal').querySelector('.close-modal').addEventListener('click', () => {
+    document.getElementById('subtitle-modal').style.display = 'none';
+    document.getElementById('subtitle-list').innerHTML = ``;
+})
+
+// *********************************************************************************************************************************
+// NEW: Subtitle Fetching and Display Functions
+// *********************************************************************************************************************************
+
+async function fetchSubtitles(lang) {
+    const subdlapikey = "7Pv8MkpQjtoA_M2AmO2-u9dZUdaHushZ"; //subdl API key
+    const movieName = document.getElementById('movie-name').textContent; // Or however you get the movie name
+    const season = document.getElementById('season').textContent; // e.g., "S01" or ""
+    let searchTerm = movieName;
+
+    if (season) {
+        searchTerm += ` ${season}`; // e.g., "Show Title S01"
+    }
+
+    const subtitleList = document.getElementById('subtitle-list');
+    subtitleList.innerHTML = '<p>Searching for subtitles...</p>';
+
+    try {
+
+        const subdlUrl = `https://api.subdl.com/api/v1/subtitles?api_key=${subdlapikey}&tmdb_id=${getUrlParam('id')}&type=${getUrlParam('type')}&languages=${lang}`; // Use the subdl API
+        const response = await fetch(subdlUrl);
+
+        if (!response.ok) {
+            throw new Error(`subdl API error: ${response.status} - ${response.statusText}`);
+        }
+
+        const data = await response.json();
+        console.log("subdl API Response:", data);
+
+        displaySubtitles(data.subtitles);
+
+    } catch (error) {
+        console.error("Error fetching subtitles:", error);
+        subtitleList.innerHTML = `<p>Error loading subtitles.</p>`;
+    }
+}
+
+function displaySubtitles(subtitles) {
+    const subtitleList = document.getElementById('subtitle-list');
+    subtitleList.innerHTML = ''; // Clear loading message or previous results
+
+    if (!subtitles || subtitles.length === 0) {
+        subtitleList.innerHTML = '<p>No subtitles found.</p>';
+        return;
+    }
+
+    subtitles.forEach(subtitle => {
+        // const subtitleItem = document.createElement('div');
+        // subtitleItem.classList.add('subtitle-item');
+
+        // const title = document.createElement('div');
+        // title.classList.add('subtitle-title');
+        // title.textContent = subtitle.filename;
+
+        // const downloadLink = document.createElement('a');
+        // downloadLink.classList.add('subtitle-download-link');
+        // downloadLink.href = subtitle.download;
+        // downloadLink.textContent = 'Download';
+        // downloadLink.target = '_blank'; // Open in new tab
+
+        // subtitleItem.appendChild(title);
+        // subtitleItem.appendChild(downloadLink);
+        subtitleList.appendChild(createSubtitleElement(subtitle));
+
+    });
+}
+
+
+function createSubtitleElement(subtitle) {
+    const container = document.createElement("div");
+    container.classList.add("source-item");
+
+    // Create label
+    const label = document.createElement("div");
+    label.classList.add("label");
+    label.textContent = "SUBDL"; // You can replace this dynamically if needed
+
+    // Create description
+    const description = document.createElement("div");
+    description.classList.add("description");
+    description.innerHTML = `${subtitle.name} 👤 ${subtitle.author} 🗣️ ${subtitle.lang}`;
+
+    // Create icon (SVG)
+    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.addEventListener('click', async () => {
+        const filePath = `https://dl.subdl.com${subtitle.url}`;
+
+        const newWindow = window.open(filePath, "_blank");
+
+        if (newWindow) {
+            // Attempt to close the window after a short delay.
+            // This is a common workaround, as directly closing immediately
+            // might be blocked by the browser's popup blocker or download behavior.
+            setTimeout(() => {
+                newWindow.close();
+            }, 500); // Adjust the delay (milliseconds) as needed.
+        } else {
+            // Handle the case where the window could not be opened (popup blocked).
+            console.error("Popup blocked or window could not be opened.");
+        }
+        // alert('')
+        if (confirm('Download Started, Would you like to go to the downloads page?')) {
+            window.location.href = 'downloads.html';
+        }
+    });
+    svg.setAttribute("class", "icon");
+    svg.setAttribute("width", "24");
+    svg.setAttribute("height", "24");
+    svg.setAttribute("fill", "none");
+    svg.setAttribute("viewBox", "0 0 24 24");
+    svg.innerHTML = `
+        <path stroke="currentColor" d="M9.5 12L12 14.5L14.5 12M12 4.5V13.8912" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        <path stroke="currentColor" d="M20 16.5L19.7785 17.8288C19.6178 18.7932 18.7834 19.5 17.8057 19.5H6.19425C5.21658 19.5 4.3822 18.7932 4.22147 17.8288L4 16.5" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+    `;
+
+    // Append elements
+    container.appendChild(label);
+    container.appendChild(description);
+    container.appendChild(svg);
+
+    return container;
+}
+
+function createTorrentElement(torrent) {
+    const container = document.createElement("div");
+    container.classList.add("source-item");
+
+    // Create label
+    const label = document.createElement("div");
+    label.classList.add("label");
+    label.textContent = torrent.provider; // You can replace this dynamically if needed
+
+    // Create description
+    const description = document.createElement("div");
+    description.classList.add("description");
+    description.innerHTML = `${torrent.title} 👤 ${torrent.seeds} 🦠 ${torrent.peers} 💾 ${torrent.size} ⚙️ ${torrent.provider}`;
+
+    // Create icon (SVG)
+    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.addEventListener('click', () => {
+        startDownload(torrent.magnet);
+        console.log(torrent.magnet);
+    })
+    svg.setAttribute("class", "icon");
+    svg.setAttribute("width", "24");
+    svg.setAttribute("height", "24");
+    svg.setAttribute("fill", "none");
+    svg.setAttribute("viewBox", "0 0 24 24");
+    svg.innerHTML = `
+        <path stroke="currentColor" d="M9.5 12L12 14.5L14.5 12M12 4.5V13.8912" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        <path stroke="currentColor" d="M20 16.5L19.7785 17.8288C19.6178 18.7932 18.7834 19.5 17.8057 19.5H6.19425C5.21658 19.5 4.3822 18.7932 4.22147 17.8288L4 16.5" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+    `;
+
+    // Append elements
+    container.appendChild(label);
+    container.appendChild(description);
+    container.appendChild(svg);
+
+    return container;
+}

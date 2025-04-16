@@ -7,6 +7,43 @@
   padding-top: var(--horizontal-nav-bar-size);
 }
 
+@media (max-width: 768px) {
+  .sidebar {
+    /* background-color: var(--secondary-background-color); */
+    width: 100vw; /* Corrected width */
+    height: var(--vertical-nav-bar-size);
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    padding: 0;
+    display: flex; /* Important: added display: flex */
+    flex-direction: row;
+    z-index: 50;
+    /* overflow-x: auto; Add if you expect content to overflow */
+
+    .sidebar-content {
+      display: flex;
+      flex-direction: row;
+      width: inherit;
+      height: var(--vertical-nav-bar-size);
+      align-items: center;
+      /* white-space: nowrap; Add if you want to prevent content wrapping */
+    }
+
+.sidebar-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: calc(100vw - 1.2rem);
+  height: calc(var(--vertical-nav-bar-size) - 1.2rem);
+  color: var(--primary-foreground-color);
+  border-radius: 0.75rem;
+  cursor: pointer;
+  user-select: none;
+}
+  }
+}
 .sidebar-item {
   display: flex;
   flex-direction: column;
@@ -99,7 +136,7 @@
   width: var(--vertical-nav-bar-size);
 }
 
-.verbar .logo svg {
+.verbar .logo img {
   width: 35px;
   height: 35px;
 }

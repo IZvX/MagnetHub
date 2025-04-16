@@ -264,7 +264,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     async function searchTMDB(searchTerm) {
         try {
-            const response = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${TMDB_API_KEY}&query=${searchTerm}`);
+            const response = await fetch(`https://api.themoviedb.org/3/search/movie?include_adult=true&api_key=${TMDB_API_KEY}&query=${searchTerm}`);
             const data = await response.json();
             return data.results
         } catch (error) {
@@ -467,7 +467,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (type == "movie" || type == "tv") {
             try {
                 const response = await fetch(
-                    `https://api.themoviedb.org/3/search/${type}?api_key=${TMDB_API_KEY}&language=en-US&query=${query}`
+                    `https://api.themoviedb.org/3/search/${type}?api_key=${TMDB_API_KEY}&include_adult=true&query=${query}`
                 );
                 const data = await response.json();
 
@@ -509,6 +509,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchQuery = getUrlParameter('query');
     if (searchQuery) {
         performSearch(searchQuery);
+        mainSearchBar.value = searchQuery;
     }
 
     // Initial Load (Home)

@@ -1,0 +1,7 @@
+{
+  "maxConns": 100,
+  "tracker": true,
+  "dht": true,
+  "utp": true
+}
+

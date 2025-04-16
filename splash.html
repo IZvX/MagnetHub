@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Splash Screen</title>
+    <style>
+        * {
+            font-family: "Plus Jakarta Sans", serif;
+            cursor: wait;
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+            user-select: none;
+            pointer-events: none;
+            color: #e5e5e5;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 256px;
+            width: 512px;
+
+            background-color: transparent;
+            /* -webkit-mask-image: radial-gradient(circle, white 128px, black 128px); */
+            /* mask-image: radial-gradient(circle, white 128px, black 128px); */
+            /* -webkit-mask-composite: xor; */
+            /* mask-composite: xor; */
+            border-radius: 1rem;
+
+        }
+
+        .splash {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(41deg,
+                    #0a0a0a 0%,
+                    /* Deep Black */
+                    #5c4e23 100%
+                    /* Muted Gold Accent */
+                );
+            border-radius: 1rem;
+            width: 512px;
+            height: 256px;
+        }
+
+        .splash-logo {
+            width: 256px;
+            height: 256px;
+            object-fit: contain;
+            border-radius: 1rem;
+
+        }
+
+        .label {
+            font-family: Arial, Helvetica, sans-serif;
+            position: absolute;
+            bottom: 15%;
+        }
+
+
+        /* HTML: <div class="loader"></div> */
+        .loader {
+            width: fit-content;
+            font-weight: bold;
+            font-family: monospace;
+            font-size: 30px;
+            background: linear-gradient(135deg, #0000 calc(50% - 0.5em), #d4af37 0 calc(50% + 0.5em), #0000 0) right/300% 100%;
+            animation: l22 2s infinite;
+        }
+
+        .loader::before {
+            content: "Loading...";
+            color: #0000;
+            padding: 0 5px;
+            background: inherit;
+            background-image: linear-gradient(135deg, #e5e5e5 calc(50% - 0.5em), #fff 0 calc(50% + 0.5em), #e5e5e5 0);
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        @keyframes l22 {
+            100% {
+                background-position: left
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="splash">
+        <img class="splash-logo" src="bin/splash/splash.png" alt="Splash Screen Logo">
+        <div class="label">
+            <div class="loader"></div>
+        </div>
+        <!-- <div class="loader"></div> -->
+    </div>
+</body>
+
+</html>

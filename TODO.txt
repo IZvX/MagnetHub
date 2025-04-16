@@ -1,0 +1,39 @@
+1. Add subtitle download => {
+	After selecting a torrent and starting a download you will be prompted to download subtitles for you movie/tv show
+	UI => {
+		1.
+		---------------------------------
+		|				|
+		|         Would you like	|		
+		|     to download subtitles?	|
+		|				|
+		|	YES		NO	|
+		|				|
+		---------------------------------
+
+		2. Same as downloads list
+	}
+}
+2. Fix bugs
+3. Add game support
+4. Improve library
+5. Android support using cordova
+6. Native desktop support using electron ==> Almost Done
+7. Android UI
+8. Better error handling
+9. Faster searching
+10. Search suggestions
+11. Clean up code
+12. Better Torrent searching ( since sometimes 0 results show up ) : Implementation {
+	Movies =>
+	1. Search with Title + Date of release
+	2. [Search with Title only] => only if results from search are < 3
+	TV =>
+	1. Search with Title + S{SeasonNumber}E{EpisodeNumber}
+	2. [Search with Title + S{SeasonNumber}] => if no episode specified
+	3. [Search with Title] => if only 1 Season is available
+	
+	Both => Search for both English Title & Original Title
+	Torrent => Add filtering for search providers (movie/tv)
+	Using these should maximize results
+}
