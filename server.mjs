@@ -14,15 +14,28 @@ import { loadTorrentData, saveTorrentData, torrents } from './server/utils/torre
 import { startBroadcasting, stopBroadcasting } from './server/utils/websocket.mjs';
 import { handleWebsocketConnection } from './server/websocket/handlers.mjs';
 import { setupStaticRoutes } from './server/routes/static.mjs';
-
+import fs from "fs";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-const port = process.env.PORT || 3000;
+// const port = process.env.PORT || 3000;
 
 const __prcpth = process.env.APPDATA || (process.platform == 'darwin' ? process.env.HOME + '/Library/Preferences' : process.env.HOME + "/.local/share");
 const __finalprcpth = __prcpth + "/Keraview/"
+// const port = "3000" || fs.readFile(path.join(__finalprcpth,'port.txt'));
+let port = "3000"; // Default port
+
+const portPath = path.join(__finalprcpth, 'port.txt');
+if (fs.existsSync(portPath)) {
+    const fileContent = fs.readFileSync(portPath, 'utf-8').trim();
+    if (fileContent) {
+        port = fileContent;
+    }
+}   
+
+console.log("port loaded :", port);console.log("port loaded : " + port);
+
 // Settings file
 const SETTINGS_FILE = path.join(__finalprcpth, '/json/settings.json');
 

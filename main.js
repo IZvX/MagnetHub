@@ -13,7 +13,7 @@ let serverProcess = null; // Store the server process reference
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const version = "0.2.3"
+const version = "0.2.3";
 // const path = require('path');
 // import { version } from "./package.json";
 const __prcpth = process.env.APPDATA || (process.platform === 'darwin'
@@ -27,14 +27,26 @@ const __prcpth = process.env.APPDATA || (process.platform === 'darwin'
   
   // Files to create with default content
   const filesToCreate = [
-    { path: path.join(__finalprcpth, 'tmp', 'torrent_data.json'), content: '{}' },
+      { path: path.join(__finalprcpth, 'tmp', 'torrent_data.json'), content: '{}' },
     { path: path.join(__finalprcpth, 'tmp', 'webtorrent_settings.json'), content: '{}' },
     // { path: path.join(__finalprcpth, 'json', 'library.json'), content: '{}' },
     // { path: path.join(__finalprcpth, 'json', 'settings.json'), content: '{}' },
-    { path: path.join(__finalprcpth, 'appver.txt'), content: version }
-  ];
+    { path: path.join(__finalprcpth, 'port.txt'), content: "3000" },
+    { path: path.join(__finalprcpth, 'appver.txt'), content: version },
+];
   
-  // Ensure main directory exists
+let port = "3000"; // Default port
+
+const portPath = path.join(__finalprcpth, 'port.txt');
+if (fs.existsSync(portPath)) {
+    const fileContent = fs.readFileSync(portPath, 'utf-8').trim();
+    if (fileContent) {
+        port = fileContent;
+    }
+}
+
+console.log("port loaded :", port);
+// Ensure main directory exists
   if (!fs.existsSync(__finalprcpth)) {
     fs.mkdirSync(__finalprcpth, { recursive: true });
   }
@@ -99,11 +111,10 @@ const createSplashWindow = () => {
                 showErrorWindow(
                     `Server exited with code ${code}${signal ? `, signal: ${signal}` : ''} <br>
                 Common Trouble Shooting Methods :<br>
-                    1.Open CMD and run this command :<br> 
-                    netstat -ano -p tcp |find "3000"<br>
-                    2.Run this next : <br>
-                    taskkill /pid \`the pid found via step 1\` /F<br>
-                    3.Restart...<br>
+                    1.Press Windows + R and type in %appdata%<br>
+                    2.Navigate to the Keraview folder<br>
+                    3.Find port.txt file<br>
+                    4.Open it and change the port to something else ( 4 digits )<br>
                 If you're still having issues please run the app via CMD by opening cmd and setting the directory via chdir to the app's folder and typing Keraview.exe and examine the error message or contact me and I'll help you fix it.<br>
                 Contact : khalilbadis6@gmail.com<br>
                 Or via discord : khalil_yfz<br>`
@@ -138,7 +149,7 @@ const createMainWindow = () => {
     mainWindow.removeMenu()
 
     mainWindow.maximize();
-    mainWindow.loadURL('http://localhost:3000/index.html');
+    mainWindow.loadURL(`http://localhost:${port}/index.html`);
 
     mainWindow.on('closed', () => {
         mainWindow = null;
