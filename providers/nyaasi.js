@@ -55,16 +55,28 @@ class NyaaCustomProvider extends TorrentProvider {
         }
     }
 
+    formatMagnet(infoHash, name) {
+        const trackers = [
+            "http://nyaa.tracker.wf:7777/announce",
+            "udp://open.stealth.si:80/announce",
+            "udp://tracker.opentrackr.org:1337/announce",
+            "udp://exodus.desync.com:6969/announce",
+            "udp://tracker.torrent.eu.org:451/announce"
+        ];
+        const trackersQueryString = `&tr=${trackers.map(encodeURIComponent).join('&tr=')}`;
+        return `magnet:?xt=urn:btih:${infoHash}&dn=${encodeURIComponent(name)}${trackersQueryString}`;
+    }
+
     async parseResults(xml) {
         console.log(`NyaaSi: Starting to parse XML results...`);
         const parser = new xml2js.Parser({ explicitArray: false });
 
         try {
             const result = await parser.parseStringPromise(xml);
-            console.log("NyaaSi: Parsed XML result:", result); //Log the full result for debugging.
+            // console.log("NyaaSi: Parsed XML result:", result); //Log the full result for debugging.
 
             if (!result || !result.rss || !result.rss.channel) {
-                console.warn("NyaaSi: Invalid RSS feed structure.");
+                // console.warn("NyaaSi: Invalid RSS feed structure.");
                 return [];
             }
 
@@ -72,12 +84,12 @@ class NyaaCustomProvider extends TorrentProvider {
             let items = result.rss.channel.item;
 
             if (!items) {
-                console.warn("NyaaSi: No items found in the RSS feed for this search.");
+                // console.warn("NyaaSi: No items found in the RSS feed for this search.");
                 return []; // Return an empty array
             }
 
             if (!Array.isArray(items)) {
-                console.warn("NyaaSi: RSS feed item is not an array, converting it to array.");
+                // console.warn("NyaaSi: RSS feed item is not an array, converting it to array.");
                 items = [items];
             }
 
@@ -89,17 +101,19 @@ class NyaaCustomProvider extends TorrentProvider {
                     const linkFromDescription = $('a').attr('href');
                     const parts = descriptionText.split(' | ');
                     const id = linkFromDescription ? linkFromDescription.split('/').pop() : null;
-
+                    let infoHash = item['nyaa:infoHash'];
+                    let name = item.title;
                     const torrent = {
                         provider: this.name,
                         title: item.title,
                         link: item.link,
                         guid: item.guid,
                         pubDate: item.pubDate,
-                        seeders: parseInt(item['nyaa:seeders'], 10),
-                        leechers: parseInt(item['nyaa:leechers'], 10),
+                        seeds: parseInt(item['nyaa:seeders']),
+                        peers: parseInt(item['nyaa:leechers']),
                         downloads: parseInt(item['nyaa:downloads'], 10),
                         infoHash: item['nyaa:infoHash'],
+                        magnet: this.formatMagnet(infoHash, name),
                         categoryId: item['nyaa:categoryId'],
                         category: item['nyaa:category'],
                         size: item['nyaa:size'],
@@ -108,16 +122,16 @@ class NyaaCustomProvider extends TorrentProvider {
                         remake: item['nyaa:remake'] === 'Yes',
                         id: id
                     };
-                    console.log(`NyaaSi: Successfully processed torrent item "${torrent.title}"`);
+                    // console.log(`NyaaSi: Successfully processed torrent item "${torrent.title}"`);
                     return torrent;
 
                 } catch (itemError) {
-                    console.warn(`NyaaSi: Error processing single RSS feed item: ${itemError}`);
+                    // console.warn(`NyaaSi: Error processing single RSS feed item: ${itemError}`);
                     return null;
                 }
             }).filter(item => item !== null);
 
-            console.log(`NyaaSi: Successfully parsed ${torrents.length} torrent items.`);
+            // console.log(`NyaaSi: Successfully parsed ${torrents.length} torrent items.`);
             return torrents;
         } catch (error) {
             console.error("NyaaSi: Error parsing XML:", error);

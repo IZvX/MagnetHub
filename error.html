@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Splash Screen</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+
+        :root {
+            /* Shape Ratios */
+            --landscape-shape-ratio: 0.5625;
+            --poster-shape-ratio: 1.464;
+
+            /* Scroll & Navigation */
+            --scroll-bar-size: 6px;
+            --horizontal-nav-bar-size: 5.5rem;
+            --vertical-nav-bar-size: 6rem;
+            --focus-outline-size: 2px;
+
+            /* Platform Colors */
+            --color-facebook: #1877f1;
+            --color-x: #000000;
+            --color-reddit: #ff4500;
+            --color-imdb: #f5c518;
+            --color-trakt: #ed2224;
+
+            /* Placeholder Colors */
+            --color-placeholder: rgba(96, 96, 96, 0.5);
+            --color-placeholder-text: #b0b0b0;
+            --color-placeholder-background: rgba(40, 40, 40, 0.8);
+
+            /* Background Colors */
+            --primary-background-color: #0a0a0a;
+            /* Deep black */
+            --secondary-background-color: #1c1c1e;
+            /* Dark gray */
+            --modal-background-color: #141414;
+            /* Darker gray */
+
+            /* Foreground Colors */
+            --primary-foreground-color: #e5e5e5;
+            /* Soft white */
+            --secondary-foreground-color: #b0b0b0;
+            /* Muted gray */
+
+            /* Accent Colors */
+            --primary-accent-color: #d4af37;
+            /* Gold (premium movie feel) */
+            --secondary-accent-color: #28a745;
+            /* Vibrant red (cinema seats) */
+            --tertiary-accent-color: #ff4500;
+            /* Bright blue (modern touch) */
+
+            /* UI Effects */
+            --overlay-color: rgba(255, 255, 255, 0.05);
+            --outer-glow: 0px 0px 15px rgba(212, 175, 55, 0.4);
+            /* Gold glow effect */
+            --text-glow: 0px 0px 15px rgba(212, 175, 55, 0.8);
+            /* Gold glow effect */
+            --border-radius: 0.75rem;
+
+            /* Safe Area Insets */
+            --safe-area-inset-top: env(safe-area-inset-top);
+            --safe-area-inset-right: env(safe-area-inset-right);
+            --safe-area-inset-bottom: env(safe-area-inset-bottom);
+            --safe-area-inset-left: env(safe-area-inset-left);
+
+            /* Component Sizes */
+            --card-width: 164px;
+        }
+
+        * {
+            font-family: "Plus Jakarta Sans", serif;
+            /* cursor: wait; */
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+            /* user-select: none; */
+            /* pointer-events: none; */
+            color: #e5e5e5;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 256px;
+            width: 512px;
+
+            background-color: transparent;
+            /* -webkit-mask-image: radial-gradient(circle, white 128px, black 128px); */
+            /* mask-image: radial-gradient(circle, white 128px, black 128px); */
+            /* -webkit-mask-composite: xor; */
+            /* mask-composite: xor; */
+            border-radius: 1rem;
+
+        }
+
+        .splash {
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            /* flex-direction: column; */
+            background: linear-gradient(41deg,
+                    #0a0a0a 0%,
+                    /* Deep Black */
+                    #5c2323 100%
+                    /* Muted Gold Accent */
+                );
+            border-radius: 1rem;
+            width: 512px;
+            height: 256px;
+        }
+
+        .splash-logo {
+            width: 256px;
+            height: 256px;
+            object-fit: contain;
+            border-radius: 1rem;
+            user-select: none;
+            pointer-events: none;
+
+            img {
+                user-select: none;
+                pointer-events: none;
+            }
+
+        }
+
+        .splash-label {
+            position: absolute;
+            bottom: 15%;
+            text-align: center;
+            width: 256px;
+        }
+
+        .label {
+            /* font-family: Arial, Helvetica, sans-serif; */
+            /* position: absolute; */
+            /* right: 10%; */
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            justify-content: center;
+            gap: .5em;
+
+            .text {
+                width: 50vw;
+                height: 80vh;
+                overflow: scroll;
+            }
+
+            .close {
+                cursor: pointer;
+                /* margin-right: .5rem; */
+                border-radius: 4rem;
+                /* padding: 0 .5rem; */
+                width: auto;
+                flex: none;
+                height: 1.5rem;
+                /* margin-bottom: 1rem; */
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                /* gap: 1rem; */
+                background-color: var(--overlay-color);
+                backdrop-filter: blur(5px);
+                transition: background-color 0.1s ease-out;
+                transition: all 0.1s ease-in-out;
+            }
+
+            margin-right: 2rem;
+        }
+
+
+        /* HTML: <div class="loader"></div> */
+        .loader {
+            width: fit-content;
+            font-weight: bold;
+            font-family: monospace;
+            font-size: 30px;
+            background: linear-gradient(135deg, #0000 calc(50% - 0.5em), #d4af37 0 calc(50% + 0.5em), #0000 0) right/300% 100%;
+            animation: l22 2s infinite;
+        }
+
+        .loader::before {
+            content: "Loading...";
+            color: #0000;
+            padding: 0 5px;
+            background: inherit;
+            background-image: linear-gradient(135deg, #e5e5e5 calc(50% - 0.5em), #fff 0 calc(50% + 0.5em), #e5e5e5 0);
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        @keyframes l22 {
+            100% {
+                background-position: left
+            }
+        }
+
+        .collapsible {
+            background-color: transparent;
+            color: #eee;
+            cursor: pointer;
+            /* padding: 18px; */
+            /* width: 100%; */
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 15px;
+        }
+
+        /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+
+        /* Style the collapsible content. Note: hidden by default */
+        .content {
+            /* padding: 0 18px; */
+            display: none;  
+            width: 50vw;
+            height: 50vh;
+            text-wrap: unset;
+            overflow: auto;
+            /* background-color: #f1f1f1; */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="splash">
+        <div class="splash-logo-container">
+            <img class="splash-logo" src="bin/splash/error.png" alt="Error Screen Logo">
+            <div class="splash-label">
+                Unexpected Error occurred...
+            </div>
+        </div>
+        <div class="label">
+            <div class="text" id="error-details">
+            </div>
+            <div class="close" id="close-btn">
+                Close
+            </div>
+        </div> <!-- <div class="loader"></div> -->
+
+    </div>
+    </div>
+    <!-- <script src=""></script> -->
+    <script type="module">
+        const { ipcRenderer } = require('electron'); // Use require() here
+
+        ipcRenderer.on('show-error', (event, message) => {
+            document.getElementById('error-details').innerHTML = message;
+        });
+        document.getElementById('close-btn').addEventListener('click', () => {
+            ipcRenderer.send('close-error-window');  // Send a message to the main process to close the window
+        });
+    </script>
+</body>
+
+</html>
