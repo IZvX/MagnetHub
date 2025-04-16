@@ -29,7 +29,7 @@ Follow these instructions to compile and run MagnetHub on your local machine:
 
 **Prerequisites:**
 
-*   [Node.js](https://nodejs.org/) (v16 or higher recommended)
+*   [Node.js](https://nodejs.org/) (v20 or higher recommended)
 *   [npm](https://www.npmjs.com/) (Node Package Manager, usually included with Node.js)
 *   [Git](https://git-scm.com/) (Optional, but recommended for cloning the repository)
 
@@ -38,7 +38,7 @@ Follow these instructions to compile and run MagnetHub on your local machine:
 1.  **Clone the Repository (if you have Git):**
 
     ```bash
-    git clone <YOUR_GITHUB_REPOSITORY_LINK>  # Replace with your repository link
+    git clone https://github.com/IZvX/MagnetHub.git
     cd MagnetHub
     ```
 
@@ -62,12 +62,9 @@ Follow these instructions to compile and run MagnetHub on your local machine:
 **Alternatively to build the application, use those command after the dependancies install:**
 
 1.  **Build the Application**
-
     ```bash
     npm run build
     ```
     This command creates an executable depending on your OS, in the dist folder.
 
-## Project Structure 📂
-
-A brief overview of the project structure (example):
+NOTICE: This program is a RESEARCH TOOL intended for educational and experimental investigation of web scraping and publicly available data sources. I explicitly DO NOT condone or encourage copyright infringement or any other illegal use. The user is fully responsible for all use of this software.
